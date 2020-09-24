@@ -4,6 +4,7 @@ pipeline {
     stage('Test') {
       parallel {
         stage('unit'){
+          agent{ label 'docker' }
           steps { sh 'sh jenkins/unit-tests.sh' }
         }
         stage('checkstyle'){
