@@ -4,6 +4,7 @@ pipeline {
     stage('Test') {
       parallel {
         stage('unit'){
+          agent{ label 'docker' }  // ensures that this stage will get assigned its own workspace
           steps { sh 'sh jenkins/unit-tests.sh' }
         }
         stage('checkstyle'){
